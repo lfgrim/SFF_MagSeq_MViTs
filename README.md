@@ -19,10 +19,10 @@ The Zenodo version is available at https://doi.org/10.5281/zenodo.10246577 and c
 In the Root directory of the project, we have the folder Seq_Magnetogram which contains the references for source images with the corresponding labels in the next 24 h. and 48 h. in the respectively M24 and M48 sub-folders.
 
 - M24/M48: both present the following sub-folders structure:
-    SF_MViT:
-    SF_MViT_oT:
-    SF_MViT_oTV:
-    SF_MViT_oTV_Test:
+    - SF_MViT:
+    - SF_MViT_oT:
+    - SF_MViT_oTV:
+    - SF_MViT_oTV_Test:
 
 There is also two files in root:
 
