@@ -35,7 +35,7 @@ To run the codes, **first we need to download the Space Environment Artificial I
 
 M24 and M48 folders hold reference text files (flare_Mclass...) linking the images in the magnetogram_jpg folders or the sequences (Seq16_flare_Mclass...)  in the Seqs16 folders with their respective labels. They also hold "cria_seqs.py" which was responsible for creating the sequences and "test_pandas.py" to verify head info and check the number of samples categorized by the label of the text files. All the text files with the prefix "Seq16" and inside the Seqs16 folder were created by "criaseqs.py" code based on the correspondent "flare_Mclass" prefixed text files.
 
-Seqs16.zip holds reference text files, in which each file contains a sequence of images that was pointed to the magnetogram_jpg folders and **need to be extracted inside M24 and M48 folder**.
+**Seqs16.zip holds reference text files, in which each file contains a sequence of images that was pointed to the magnetogram_jpg folders and need to be extracted inside M24 and M48 folder**.
 
 All SF_MViT... folders hold the model training codes itself (SF_MViT...py) and the corresponding job submission (jobMViT...), temporary input (Seq16_flare...), output (saida_MVIT... and MViT_S...), error (err_MViT...) and checkpoint files (sample-FLARE...ckpt). Executed model training codes generate output, error, and checkpoint files. There is also a folder called "lightning_logs" that stores logs of trained models.
 
