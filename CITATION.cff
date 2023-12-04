@@ -10,4 +10,4 @@ authors:
 title: "Repository for Solar flare forecasting based on magnetogram sequences learning with multiscale vision transformers and data augmentation techniques"
 version: 0.1
 date-released: 2023-12-04
-url: "https://github.com/lfgrim/SFF_MagSeq_MViTs"
+url: "https://github.com/lfgrim/SFF_MagSeq_MViTs" 

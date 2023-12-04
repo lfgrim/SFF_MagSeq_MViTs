@@ -76,4 +76,4 @@ Checkpoint files: ``sample-FLARE_MViT_S_10-7-epoch=<n-epoch>-valid_loss=<loss-va
 - ``<n-opoch>``: epoch number of the checkpoint;
 - ``<loss-value>``: corresponding valid loss;
 - ``<n-split>``: 0 to 4.
-
+ 
