@@ -19,10 +19,10 @@ The Zenodo version is available at https://doi.org/10.5281/zenodo.10246577 and c
 In the Root directory of the project, we have the folder Seq_Magnetogram which contains the references for source images with the corresponding labels in the next 24 h. and 48 h. in the respectively M24 and M48 sub-folders.
 
 - M24/M48: both present the following sub-folders structure:
-    - SF_MViT:
-    - SF_MViT_oT:
-    - SF_MViT_oTV:
-    - SF_MViT_oTV_Test:
+    - SF_MViT;
+    - SF_MViT_oT;
+    - SF_MViT_oTV;
+    - SF_MViT_oTV_Test;
 
 There is also two files in root:
 
@@ -37,45 +37,44 @@ All SF_MViT... folders hold the model training codes itself (SF_MViT...py) and t
 
 
 ### Naming pattern for the files:
-magnetogram_jpg: follows the format "hmi.sharp_720s.<SHARP-ID>.<date>.magnetogram.fits.jpg" and
-Seqs16: follows the format "hmi.sharp_720s.<SHARP-ID>.<init-date>.to.<end-date>", where:
-- hmi is the instrument that captured the image
-- sharp_720s is the database source of SDO/HMI.
-- <SHARP-ID> is the identification of SHARP region, and can contain one or more solar ARs classified by the (NOAA).
-- <date> is the date-time the instrument captured the image in the format yyyymmdd_hhnnss_TAI (y:year, m:month, d:day, h:hours, n:minutes, s:seconds).
-- <init-date> is the date-time when the sequence starts and follow the same format of <date>.
-- <end-date> is the date-time when the sequence ends and follow the same format of <date>.
+- magnetogram_jpg: follows the format "hmi.sharp_720s.\<SHARP-ID\>.\<date\>.magnetogram.fits.jpg" and
+- Seqs16: follows the format "hmi.sharp_720s.\<SHARP-ID\>.\<init-date\>.to.\<end-date\>", where:
+    - hmi is the instrument that captured the image
+    - sharp_720s is the database source of SDO/HMI.
+    - \<SHARP-ID\> is the identification of SHARP region, and can contain one or more solar ARs classified by the (NOAA).
+    - \<date\> is the date-time the instrument captured the image in the format yyyymmdd_hhnnss_TAI (y:year, m:month, d:day, h:hours, n:minutes, s:seconds).
+    - \<init-date\> is the date-time when the sequence starts and follow the same format of \<date\>.
+    - \<end-date\> is the date-time when the sequence ends and follow the same format of \<date\>.
 
 
-Reference text files in M24 and M48 or inside SF_MViT... folders follows the format "<prefix>flare_Mclass_<forecasting-horizon>_<dataset>.txt<over>", where:
-- <prefix>: is Seq16 if refers to a sequence or void if refers direct to images.
-- <forecasting-horizon>: "24h" or "48h".
-- <dataset>: is "TrainVal<n>" or "Test". The <n> refers to the split of Train/Val.
-- <over>: void or "_over" after the extension (...txt_over): means temporary input reference that was over-sampled by a training model.
+- Reference text files in M24 and M48 or inside SF_MViT... folders follows the format "\<prefix\>flare_Mclass_\<forecasting-horizon\>_\<dataset\>.txt\<over\>", where:
+    - \<prefix\>: is Seq16 if refers to a sequence or void if refers direct to images.
+    - \<forecasting-horizon\>: "24h" or "48h".
+    - \<dataset\>: is "TrainVal<n>" or "Test". The <n> refers to the split of Train/Val.
+    - \<over\>: void or "_over" after the extension (...txt_over): means temporary input reference that was over-sampled by a training model.
 
 
-All SF_MViT...folders:
+- All SF_MViT...folders:
+    - Model training codes: "SF_MViT_\<oversampling-type\>_M+_\<forecasting-horizon\>_\<split-type\>\<gpu-type\>", where:
+        - \<oversampling-type\>: void or "oT" (over Train) or "oTV" (over Train and Val) or "oTV_Test" (over Train, Val and Test);
+        - \<forecasting-horizon\>: "24h" or "48h";
+        - \<split-type\>: "oneSplit" for a specific split or "allSplits" if run all splits.
+        - \<gpu-type\>: void is default to run 1 GPU or "2gpu" to run into 2 gpus systems;
 
-Model training codes: "SF_MViT_<oversampling-type>_M+_<forecasting-horizon>_<split-type><gpu-type>", where:
-- <oversampling -type>: void or "oT" (over Train) or "oTV" (over Train and Val) or "oTV_Test" (over Train, Val and Test);
-- <forecasting-horizon>: "24h" or "48h";
-- <split-type>: "oneSplit" for a specific split or "allSplits" if run all splits.
-- <gpu-type>: void is default to run 1 GPU or "2gpu" to run into 2 gpus systems;
+    - Job submission files: "jobMViT_\<queue\>", where:
+        - \<queue\>: point the queue in Lovelace environment hosted on CENAPAD-SP (https://www.cenapad.unicamp.br/parque/jobsLovelace)
 
-Job submission files: "jobMViT_<queue>", where:
-- <queue>: point the queue in Lovelace environment hosted on CENAPAD-SP (https://www.cenapad.unicamp.br/parque/jobsLovelace)
+    - Temporary inputs: "Seq16_flare_Mclass_\<forecasting-horizon\>_\<dataset\>.txt\<over\>:
+        - \<dataset\>: train or val;
+        - \<over\>: void or "_over" after the extension (...txt_over): means temporary input reference that was over-sampled by a training model.
 
-Temporary inputs: "Seq16_flare_Mclass_<forecasting-horizon>_<dataset>.txt<over>:
-- <dataset>: train or val;
-- <over>: void or "_over" after the extension (...txt_over): means temporary input reference that was over-sampled by a training model.
+    - Outputs: "saida_MViT_Adam_10-7\<split\>", where:
+        - \<split\>: k0 to k4, means the correlated split of the output or void if the output is from all splits.
 
-Outputs: "saida_MViT_Adam_10-7<split>", where:
-- <split>: k0 to k4, means the correlated split of the output or void if the output is from all splits.
+    - Error files: "err_MViT_Adam_10-7\<split\>", where:
+        - \<split\>: k0 to k4, means the correlated split of the error log file or void if the error file is from all splits.
 
-Error files: "err_MViT_Adam_10-7<split>", where:
-- <split>: k0 to k4, means the correlated split of the error log file or void if the error file is from all splits.
-
-Checkpoint files: "sample-FLARE_MViT_S_10-7-epoch=<n-epoch>-valid_loss=<loss-value>-Wloss_k=<n-split>.ckpt", where:
-- <n-opoch>: epoch number of the checkpoint;
-- <loss-value>: corresponding valid loss;
-- <n-split>: 0 to 4.
+    - Checkpoint files: "sample-FLARE_MViT_S_10-7-epoch=\<n-epoch\>-valid_loss=\<loss-value\>-Wloss_k=\<n-split\>.ckpt", where:
+        - \<n-opoch\>: epoch number of the checkpoint;
+        - \<loss-value\>: corresponding valid loss;
+        - \<n-split\>: 0 to 4.
