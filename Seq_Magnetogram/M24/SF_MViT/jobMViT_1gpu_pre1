@@ -1,0 +1,20 @@
+#PBS -N TFnoOver_kFull
+#PBS -q umagpu
+#PBS -e err_MViT_Adam_10-7
+#PBS -o saida_MViT_Adam_10-7
+#PBS -m abe
+#PBS -W umask=0022
+
+cd $PBS_O_WORKDIR
+
+#module load cuda/11.5.0-intel-2019.0.5
+module load python/3.8.12-intel-2021.3.0 
+
+export OMP_NUM_THREADS=16
+
+python --version
+
+nvidia-smi
+
+python SF_MViT_M+_24h_allSplits.py
+ 
